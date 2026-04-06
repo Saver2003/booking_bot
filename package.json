@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Saver2003/booking_bot#readme",
   "dependencies": {
     "dotenv": "^17.4.1",
+    "pg": "^8.20.0",
     "telegraf": "^4.16.3"
   }
 }
