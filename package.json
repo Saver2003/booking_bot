@@ -1,0 +1,24 @@
+{
+  "name": "booking",
+  "version": "1.0.0",
+  "description": "booking-bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Saver2003/booking_bot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Saver2003/booking_bot/issues"
+  },
+  "homepage": "https://github.com/Saver2003/booking_bot#readme",
+  "dependencies": {
+    "dotenv": "^17.4.1",
+    "telegraf": "^4.16.3"
+  }
+}
