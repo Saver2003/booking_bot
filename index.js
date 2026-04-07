@@ -1,34 +1,29 @@
 require('dotenv').config();
 
-const migrate    = require('./src/db/migrate');
-const createBot  = require('./src/bot');
-
-const RETRY_DELAY_MS = 5000;
-const MAX_RETRIES    = 10;
+const migrate   = require('./src/db/migrate');
+const createBot = require('./src/bot');
+const config    = require('./src/config');
 
 async function main() {
     await migrate();
 
     const bot = createBot();
 
-    for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
-        try {
-            await bot.launch();
-            console.log('Бот запущен 🚀');
-
-            process.once('SIGINT',  () => bot.stop('SIGINT'));
-            process.once('SIGTERM', () => bot.stop('SIGTERM'));
-            return;
-        } catch (err) {
-            const is409 = err.message && err.message.includes('409');
-            if (is409 && attempt < MAX_RETRIES) {
-                console.log(`Конфликт (попытка ${attempt}/${MAX_RETRIES}), повтор через ${RETRY_DELAY_MS / 1000} сек...`);
-                await new Promise((r) => setTimeout(r, RETRY_DELAY_MS));
-            } else {
-                throw err;
-            }
-        }
+    if (config.webhookUrl) {
+        await bot.launch({
+            webhook: {
+                domain: config.webhookUrl,
+                port:   config.port,
+            },
+        });
+        console.log(`Бот запущен (webhook) на порту ${config.port} 🚀`);
+    } else {
+        await bot.launch();
+        console.log('Бот запущен (polling) 🚀');
     }
+
+    process.once('SIGINT',  () => bot.stop('SIGINT'));
+    process.once('SIGTERM', () => bot.stop('SIGTERM'));
 }
 
 main().catch((err) => {

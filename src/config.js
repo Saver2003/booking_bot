@@ -7,8 +7,10 @@ for (const key of required) {
 }
 
 module.exports = {
-    botToken: process.env.BOT_TOKEN,
-    adminId:  process.env.ADMIN_ID,
+    botToken:   process.env.BOT_TOKEN,
+    adminId:    process.env.ADMIN_ID,
+    webhookUrl: process.env.WEBHOOK_URL || null,
+    port:       parseInt(process.env.PORT || '3000', 10),
     db: {
         connectionString: process.env.DATABASE_URL,
     },
