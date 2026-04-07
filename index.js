@@ -12,8 +12,9 @@ async function main() {
     if (config.webhookUrl) {
         await bot.launch({
             webhook: {
-                domain: config.webhookUrl,
-                port:   config.port,
+                domain:   config.webhookUrl,
+                port:     config.port,
+                host:     '0.0.0.0',
                 hookPath: '/webhook',
             },
         });
