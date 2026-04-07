@@ -20,9 +20,7 @@
   "dependencies": {
     "dotenv": "^17.4.1",
     "pg": "^8.20.0",
+    "punycode": "^2.3.1",
     "telegraf": "^4.16.3"
-  },
-  "overrides": {
-  "punycode": "^2.3.1"
   }
 }
