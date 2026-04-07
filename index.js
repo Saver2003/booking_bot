@@ -14,6 +14,7 @@ async function main() {
             webhook: {
                 domain: config.webhookUrl,
                 port:   config.port,
+                hookPath: '/webhook',
             },
         });
         console.log(`Бот запущен (webhook) на порту ${config.port} 🚀`);
