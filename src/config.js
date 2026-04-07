@@ -1,4 +1,4 @@
-const required = ['BOT_TOKEN', 'ADMIN_ID', 'DATABASE_URL'];
+const required = ['BOT_TOKEN', 'ADMIN_ID', 'DATABASE_URL', 'WEBHOOK_URL'];
 
 for (const key of required) {
     if (!process.env[key]) {
